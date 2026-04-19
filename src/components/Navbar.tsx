@@ -17,8 +17,8 @@ const NavLink = ({
       onClick={() => router.push(to)}
       className={`cursor-pointer transition-colors duration-200 ${
         active
-          ? "text-white"
-          : "text-zinc-600 hover:text-zinc-300"
+          ? "text-white dark:text-white light:text-zinc-900"
+          : "text-zinc-600 hover:text-zinc-300 dark:hover:text-zinc-300 light:hover:text-zinc-900"
       }`}
     >
       {children}
@@ -71,7 +71,7 @@ const Navbar = () => {
   }, [router, toggleTheme]);
 
   return (
-    <div className="flex gap-6 sticky top-0 bg-zinc-950/90 backdrop-blur-md z-100 py-6 text-sm">
+    <div className="flex gap-6 sticky top-0 bg-zinc-950/90 dark:bg-zinc-950/90 light:bg-zinc-50/90 backdrop-blur-md z-100 py-6 text-sm">
       <NavLink to="/" active={pathname === "/"}>
         <span className="text-zinc-500 mr-1">[h]</span>
         home
@@ -86,7 +86,7 @@ const Navbar = () => {
       </NavLink>
       <button
         onClick={toggleTheme}
-        className="ml-auto cursor-pointer text-zinc-600 hover:text-zinc-300 transition-colors duration-200"
+        className="ml-auto cursor-pointer text-zinc-600 hover:text-zinc-300 dark:hover:text-zinc-300 light:hover:text-zinc-900 transition-colors duration-200"
       >
         <span className="text-zinc-500 mr-1">[t]</span>
         {mounted && (theme === "dark" ? "light" : "dark")}

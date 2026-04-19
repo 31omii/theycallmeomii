@@ -14,7 +14,7 @@ const page = async () => {
             className="group"
           >
             <div className="flex flex-col gap-1">
-              <div className="text-zinc-300 text-xs">{blog.date}</div>
+              <div className="text-zinc-400 text-xs">{blog.date}</div>
               <div className="text-white group-hover:text-zinc-200 transition-colors">
                 {blog.title}
               </div>

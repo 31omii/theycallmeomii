@@ -159,36 +159,31 @@ export default function DrawingsClient({ drawings }: { drawings: Drawing[] }) {
 
       {/* Fullscreen */}
       {fullscreen && currentImage && (
-        <div className="fixed inset-0 z-9999 flex items-center justify-center p-4 md:p-8">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-2 md:p-4">
           <div
             className="absolute inset-0 bg-zinc-950/60 backdrop-blur-xl"
             onClick={closeFullscreen}
           />
           <button
             onClick={(e) => { e.stopPropagation(); closeFullscreen(); }}
-            className="absolute top-4 right-4 z-10000 text-zinc-500 hover:text-white transition-colors"
+            className="absolute top-3 right-16 z-[10000] text-zinc-500 hover:text-white transition-colors"
           >
             <XIcon size={18} />
           </button>
-
-          {/* left arrow */}
           <button
             onClick={(e) => { e.stopPropagation(); prev(); }}
-            className="absolute left-4 z-10000 text-zinc-500 hover:text-white transition-colors border border-zinc-800 hover:border-zinc-600 rounded-sm p-2"
+            className="absolute left-3 z-[10000] text-zinc-500 hover:text-white transition-colors border border-zinc-800 hover:border-zinc-600 rounded-sm p-2"
           >
             <ArrowLeftIcon size={16} />
           </button>
-
-          {/* right arrow */}
           <button
             onClick={(e) => { e.stopPropagation(); next(); }}
-            className="absolute right-4 z-10000 text-zinc-500 hover:text-white transition-colors border border-zinc-800 hover:border-zinc-600 rounded-sm p-2"
+            className="absolute right-3 z-[10000] text-zinc-500 hover:text-white transition-colors border border-zinc-800 hover:border-zinc-600 rounded-sm p-2"
           >
             <ArrowRightIcon size={16} />
           </button>
-
           <div
-            className="relative z-10000 w-full max-w-5xl max-h-[95vh] rounded-xl overflow-hidden border border-zinc-800/40 flex items-center justify-center"
+            className="relative z-[10000] w-full max-w-6xl max-h-[98vh] rounded-xl overflow-hidden border border-zinc-800/40 flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
             onWheel={handleWheel}
             onMouseDown={handleMouseDown}
@@ -205,7 +200,7 @@ export default function DrawingsClient({ drawings }: { drawings: Drawing[] }) {
                 transform: `scale(${zoom}) translate(${pan.x / zoom}px, ${pan.y / zoom}px)`,
                 transition: isDragging.current ? "none" : "transform 0.15s ease",
                 maxWidth: "100%",
-                maxHeight: "95vh",
+                maxHeight: "98vh",
                 objectFit: "contain",
                 display: "block",
                 userSelect: "none",
@@ -218,25 +213,22 @@ export default function DrawingsClient({ drawings }: { drawings: Drawing[] }) {
       {/* Lightbox */}
       {current && currentImage && activeCollection !== null && !fullscreen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 pt-20"
           onClick={close}
         >
           <div className="absolute inset-0 bg-zinc-950/85 backdrop-blur-md" />
+
           <div
-            className="relative z-10 flex gap-3 w-full max-w-3xl"
+            className="relative z-10 w-full max-w-3xl flex flex-col gap-3"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              onClick={(e) => { e.stopPropagation(); close(); }}
-              className="absolute -top-9 right-0 z-20 text-zinc-400 hover:text-white transition-colors"
-            >
-              <XIcon size={18} />
-            </button>
+            {/* image row — image + close to right + sidebar to right */}
+            <div className="flex gap-3 items-start w-full">
 
-            <div className="flex flex-col flex-1 gap-3 min-w-0">
+              {/* image box */}
               <div
-                className="w-full rounded-xl overflow-hidden border border-zinc-800 h-[55vh] flex items-center justify-center bg-zinc-950/50 cursor-pointer"
-                onClick={(e) => { e.stopPropagation(); setFullscreen(true); }}
+                className="flex-1 rounded-xl overflow-hidden border border-zinc-800 h-[68vh] flex items-center justify-center bg-zinc-950/50 cursor-pointer"
+                onClick={(e) => { e.stopPropagation(); setFullscreen(true); setZoom(1); setPan({ x: 0, y: 0 }); }}
               >
                 <img
                   src={currentImage.src}
@@ -245,58 +237,72 @@ export default function DrawingsClient({ drawings }: { drawings: Drawing[] }) {
                 />
               </div>
 
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex flex-col gap-0.5">
-                  <p className="text-white text-sm font-medium">{current.title}</p>
-                  {current.description && (
-                    <p className="text-zinc-400 text-xs leading-relaxed">{current.description}</p>
-                  )}
-                  {currentImage.caption && (
-                    <p className="text-zinc-500 text-xs italic mt-0.5">{currentImage.caption}</p>
-                  )}
-                </div>
-                <p className="text-zinc-500 text-xs shrink-0">{current.date}</p>
-              </div>
+              {/* right column — close on top, thumbnails below */}
+              <div className="flex flex-col gap-2 items-center">
+                {/* close */}
+                <button
+                  onClick={(e) => { e.stopPropagation(); close(); }}
+                  className="text-zinc-400 hover:text-white transition-colors border border-zinc-800 hover:border-zinc-600 rounded-sm p-1.5 shrink-0"
+                >
+                  <XIcon size={15} />
+                </button>
 
-              <div className="flex gap-3 w-full justify-center items-center">
-                <button
-                  onClick={(e) => { e.stopPropagation(); prev(); }}
-                  className="text-zinc-400 hover:text-white transition-colors border border-zinc-800 hover:border-zinc-600 rounded-sm px-4 py-1.5 flex items-center gap-2 text-sm"
-                >
-                  <ArrowLeftIcon size={13} /> prev
-                </button>
-                <div className="flex flex-col items-center gap-1 min-w-60px justify-center">
-                  {isMulti && renderDots(current.images.length, activeImage)}
-                  <span className="text-zinc-600 text-xs">
-                    {activeCollection + 1} / {drawings.length}
-                  </span>
-                </div>
-                <button
-                  onClick={(e) => { e.stopPropagation(); next(); }}
-                  className="text-zinc-400 hover:text-white transition-colors border border-zinc-800 hover:border-zinc-600 rounded-sm px-4 py-1.5 flex items-center gap-2 text-sm"
-                >
-                  next <ArrowRightIcon size={13} />
-                </button>
+                {/* thumbnails — vertical on right */}
+                {isMulti && (
+                  <div className="flex flex-col gap-1.5 overflow-y-auto max-h-[60vh]">
+                    {current.images.map((img, idx) => (
+                      <button
+                        key={idx}
+                        onClick={(e) => { e.stopPropagation(); setActiveImage(idx); }}
+                        className={`shrink-0 w-11 h-11 rounded-lg overflow-hidden border transition-all duration-150 ${
+                          idx === activeImage
+                            ? "border-white opacity-100"
+                            : "border-zinc-800 hover:border-zinc-500 opacity-40 hover:opacity-100"
+                        }`}
+                      >
+                        <img src={img.src} alt="" className="w-full h-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
-            {isMulti && (
-              <div className="flex flex-col gap-1.5 overflow-y-auto max-h-[70vh] w-14 shrink-0">
-                {current.images.map((img, idx) => (
-                  <button
-                    key={idx}
-                    onClick={(e) => { e.stopPropagation(); setActiveImage(idx); }}
-                    className={`shrink-0 w-14 h-14 rounded-lg overflow-hidden border transition-all duration-150 ${
-                      idx === activeImage
-                        ? "border-white opacity-100"
-                        : "border-zinc-800 hover:border-zinc-500 opacity-40 hover:opacity-100"
-                    }`}
-                  >
-                    <img src={img.src} alt="" className="w-full h-full object-cover" />
-                  </button>
-                ))}
+            {/* info */}
+            <div className="flex items-start justify-between gap-4 px-1">
+              <div className="flex flex-col gap-0.5">
+                <p className="text-white text-sm font-medium">{current.title}</p>
+                {current.description && (
+                  <p className="text-zinc-400 text-xs leading-relaxed">{current.description}</p>
+                )}
+                {currentImage.caption && (
+                  <p className="text-zinc-500 text-xs italic mt-0.5">{currentImage.caption}</p>
+                )}
               </div>
-            )}
+              <p className="text-zinc-500 text-xs shrink-0">{current.date}</p>
+            </div>
+
+            {/* nav */}
+            <div className="flex gap-3 w-full justify-center items-center">
+              <button
+                onClick={(e) => { e.stopPropagation(); prev(); }}
+                className="text-zinc-400 hover:text-white transition-colors border border-zinc-800 hover:border-zinc-600 rounded-sm px-4 py-1.5 flex items-center gap-2 text-sm"
+              >
+                <ArrowLeftIcon size={13} /> prev
+              </button>
+              <div className="flex flex-col items-center gap-1 min-w-[60px] justify-center">
+                {isMulti && renderDots(current.images.length, activeImage)}
+                <span className="text-zinc-600 text-xs">
+                  {activeCollection + 1} / {drawings.length}
+                </span>
+              </div>
+              <button
+                onClick={(e) => { e.stopPropagation(); next(); }}
+                className="text-zinc-400 hover:text-white transition-colors border border-zinc-800 hover:border-zinc-600 rounded-sm px-4 py-1.5 flex items-center gap-2 text-sm"
+              >
+                next <ArrowRightIcon size={13} />
+              </button>
+            </div>
           </div>
         </div>
       )}

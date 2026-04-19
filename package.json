@@ -1,0 +1,39 @@
+{
+  "name": "portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@fontsource/space-mono": "^5.2.9",
+    "@mdx-js/loader": "^3.1.1",
+    "@mdx-js/react": "^3.1.1",
+    "@next/mdx": "^15.1.0",
+    "@phosphor-icons/react": "^2.1.10",
+    "@types/mdx": "^2.0.13",
+    "gray-matter": "^4.0.3",
+    "motion": "^12.23.19",
+    "next": "^15.5.15",
+    "next-mdx-remote": "^6.0.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "shiki": "^3.13.0",
+    "sugar-high": "^0.9.3",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^15.1.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

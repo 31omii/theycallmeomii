@@ -16,31 +16,31 @@ export default function Home() {
       {/* Status */}
       <div className="text-sm mb-8 space-y-3 max-w-lg">
         <p className="text-zinc-300">
-          currently cloning @{" "}
+          currently studying @{" "}
           <a 
-            href="https://tryghost.ai/" 
+            // href="https://site/" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-emerald-400 hover:text-emerald-300 transition-colors"
           >
-            ghost
+            AI & ML
           </a>
         </p>
         <p className="text-zinc-300">
-          prev. co-founded{" "}
+          prev. used to {" "}
           <a 
-            href="https://www.raeai.app/" 
+            // href="https://site/" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-violet-400 hover:text-violet-300 transition-colors"
           >
-            rae
+            draw
           </a>
-          {" "}- cool desktop buddy/agent
+          {" "}- sketches
         </p>
         <p className="text-zinc-300">
-          i fw oss heavy -{" "}
-          <span className="text-zinc-300">raycast</span>,{" "}
+          i fw -{" "}
+          <span className="text-zinc-300">rl</span>,{" "}
           <span className="text-zinc-300">ollama</span>,{" "}
           <span className="text-zinc-300">moltbot</span>
         </p>
@@ -49,11 +49,10 @@ export default function Home() {
       {/* About */}
       <div className="text-sm mb-8 max-w-lg border-l-2 border-zinc-800 pl-4 space-y-4">
         <p className="text-zinc-300 leading-relaxed">
-        i like building things that actually work in the real world. 
-        obsessed with CV, robotics, and making ML go beyond jupyter notebooks.
+        i am trying to figure out how to not fuck things up :) .
         </p>
         <p className="text-zinc-300 leading-relaxed">
-        either shipping something or deep in a paper i found at 2am.
+        either trying something or deep in a book i found at 2am.
         </p>
         <p className="text-zinc-400 leading-relaxed">
         aside from that, also into{" "}
@@ -61,7 +60,7 @@ export default function Home() {
         <span className="text-zinc-500 mx-1">·</span>
         <span className="text-zinc-300">music</span>
         <span className="text-zinc-500 mx-1">·</span>
-        <span className="text-zinc-300">chess</span>
+        <span className="text-zinc-300">reading</span>
       </p>
         
         {/* Photo grid */}
@@ -90,7 +89,7 @@ export default function Home() {
         </div>
         
         <p className="text-zinc-400 text-xs pt-2">
-          p.s. its hard without agents 
+          p.s. this sadness will last forever - van gogh. 
         </p>
       </div>
 

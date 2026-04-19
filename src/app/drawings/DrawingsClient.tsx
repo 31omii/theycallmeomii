@@ -159,31 +159,31 @@ export default function DrawingsClient({ drawings }: { drawings: Drawing[] }) {
 
       {/* Fullscreen */}
       {fullscreen && currentImage && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-2 md:p-4">
+        <div className="fixed inset-0 z-9999 flex items-center justify-center p-2 md:p-4">
           <div
             className="absolute inset-0 bg-zinc-950/60 backdrop-blur-xl"
             onClick={closeFullscreen}
           />
           <button
             onClick={(e) => { e.stopPropagation(); closeFullscreen(); }}
-            className="absolute top-3 right-16 z-[10000] text-zinc-500 hover:text-white transition-colors"
+            className="absolute top-3 right-16 z-10000 text-zinc-500 hover:text-white transition-colors"
           >
             <XIcon size={18} />
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); prev(); }}
-            className="absolute left-3 z-[10000] text-zinc-500 hover:text-white transition-colors border border-zinc-800 hover:border-zinc-600 rounded-sm p-2"
+            className="absolute left-3 z-10000 text-zinc-500 hover:text-white transition-colors border border-zinc-800 hover:border-zinc-600 rounded-sm p-2"
           >
             <ArrowLeftIcon size={16} />
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); next(); }}
-            className="absolute right-3 z-[10000] text-zinc-500 hover:text-white transition-colors border border-zinc-800 hover:border-zinc-600 rounded-sm p-2"
+            className="absolute right-3 z-10000 text-zinc-500 hover:text-white transition-colors border border-zinc-800 hover:border-zinc-600 rounded-sm p-2"
           >
             <ArrowRightIcon size={16} />
           </button>
           <div
-            className="relative z-[10000] w-full max-w-6xl max-h-[98vh] rounded-xl overflow-hidden border border-zinc-800/40 flex items-center justify-center"
+            className="relative z-10000 w-full max-w-6xl max-h-[98vh] rounded-xl overflow-hidden border border-zinc-800/40 flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
             onWheel={handleWheel}
             onMouseDown={handleMouseDown}
@@ -290,7 +290,7 @@ export default function DrawingsClient({ drawings }: { drawings: Drawing[] }) {
               >
                 <ArrowLeftIcon size={13} /> prev
               </button>
-              <div className="flex flex-col items-center gap-1 min-w-[60px] justify-center">
+              <div className="flex flex-col items-center gap-1 min-w-60px justify-center">
                 {isMulti && renderDots(current.images.length, activeImage)}
                 <span className="text-zinc-600 text-xs">
                   {activeCollection + 1} / {drawings.length}

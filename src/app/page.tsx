@@ -3,9 +3,14 @@ import { ArrowUpRight, XLogo, LinkedinLogo, EnvelopeSimple } from "@phosphor-ico
 export default function Home() {
   return (
     <div className="flex flex-col py-12 stagger-children">
+      {/* Tag */}
+      <h1 className="text-2xl font-medium mb-2 text-white dark:text-white light:text-black tracking-tight">
+        under maintenance :/
+      </h1>
+
       {/* Name */}
       <h1 className="text-2xl font-medium mb-2 text-white dark:text-white light:text-black tracking-tight">
-        omii :)
+        omii :(
       </h1>
       
       {/* Age */}
